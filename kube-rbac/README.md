@@ -40,6 +40,7 @@ Switch to context user1-context.
 $ kubectl config use-context user1-context
 ```
 Save kubeconfig output to a file.
+```
 $ kubectl config view --flatten --minify > user1-cluster-cert.txt
 ```
 Last one, copy user1-cluster-cert.txt to administrator PC in **./kube/config**. And try to run any commands.
