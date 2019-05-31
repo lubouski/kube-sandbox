@@ -1,0 +1,19 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: persistent-alpine
+spec:
+  containers:
+    - name: alpine
+      image: alpine:3.9
+      command:
+        - /bin/sh
+        - "-c"
+        - "sleep 60m"
+      volumeMounts:
+      - mountPath: "/opt"
+        name: test-pv
+  volumes:
+    - name: test-pv
+      persistentVolumeClaim:
+        claimName: alpine-pv-claim
