@@ -49,3 +49,14 @@ $ kubectl get pods -n kube-system
 Error from server (Forbidden): pods is forbidden: User "user1" cannot list resource "pods" in API group "" in the namespace "kube-system"
 ``` 
 Now user (administrator or developer) could access cluster with his own **kubeconfig** file, which could have restrictions as in our case only on get, list and watch pods, on namespace **default**.
+
+For easy configuration of read-only user, we can use cluster-roles
+```
+$ kubectl get clusterroles | grep -v '^system'
+$ kubectl apply -f cluster-rolebinding.yml
+``` 
+Then test that your user2 can only read any info from cluster in any namespace you want
+```
+$ KUBECONFIG=~/.kube/test-config kubectl get po -n kube-system
+```
+
