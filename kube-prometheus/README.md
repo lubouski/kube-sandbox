@@ -17,8 +17,8 @@ The ServiceMonitor has a label selector to select Services and their underlying 
 ```
 $ kubectl apply -f example-app-service.yml
 ```
-This Service object is discovered by a ServiceMonitor, which selects in the same way. The `app` label must have the value `example-app.
-````
+This Service object is discovered by a ServiceMonitor, which selects in the same way. The `app` label must have the value `example-app`.
+```
 $ kubectl apply -f prometheus-servicemonitor.yml
 ```
 Create a ClusterRole and ClusterRoleBinding for the Prometheus Pods.
