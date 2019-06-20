@@ -13,4 +13,13 @@ kubectl apply -f fluentbit-configmap.yml
 kubectl apply -f fluentbit-ds.yml
 ``` 
 
+### Features of fluentbit
+Additionally fluentbit provides functionality to limit log streaming from some deployments, with `annotations`:
+```
+fluentbit.io/exclude: "true"
+```
+And enable it in fluentbit `configmap` config:
+```
+K8S-Logging.Exclude On
+```
 

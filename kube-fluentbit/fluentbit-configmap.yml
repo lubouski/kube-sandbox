@@ -36,7 +36,8 @@ data:
         Match               kube.*
         Kube_URL            https://kubernetes.default.svc.cluster.local:443
         Merge_Log           On
-        K8S-Logging.Parser  On
+        #K8S-Logging.Parser  On
+        K8S-Logging.Exclude On
   output-kafka.conf: |
     [OUTPUT]
         Name           file
