@@ -5,6 +5,9 @@ metadata:
   labels:
     team: frontend
 spec:
+#  namespaceSelector:
+#    matchNames:
+#    - default # if you got deployment in separate namespace than `ServiceMonitor`, uncomment this lines
   selector:
     matchLabels:
       app: example-app
