@@ -7,7 +7,7 @@ spec:
   serviceMonitorSelector:
     matchLabels:
       team: frontend  # defines which serviceMonitors should be included  
-  version: v1.7.1
+  version: v2.7.1 # version of prometheus it self, which is under statefulset
   externalUrl: http://lubouski.test.com:30000/prometheus # needed for ingress rewrite on /prometheus
   resources:
     requests:
