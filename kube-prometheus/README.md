@@ -34,6 +34,9 @@ To access the Prometheus instance it must be exposed to the outside. This exampl
 $ kubectl apply -f prometheus-service.yml
 ```
 
+### NOTE:
+`RBAC` for `prometheus` and `RBAC` for `prometheus-operator` are different entities for different purposes. 
+
 Once this Service is created the Prometheus web UI is available under the lubouski.test.com:30000/prometheus (please check ingress config file and provide DNS entry for IP of the master cluster node). The targets page in the web UI now shows that the instances of the example application have successfully been discovered.
 
 
