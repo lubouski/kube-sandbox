@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: consul-ui
+spec:
+  type: NodePort
+  ports:
+    - port: 8500
+      nodePort: 31111
+      name: consul-ui
+    - port: 8301
+      nodePort: 31112
+      name: consul-join-port
+  selector:
+    app: consul
