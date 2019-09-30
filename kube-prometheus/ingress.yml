@@ -1,14 +1,14 @@
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  annotations:
-  name: app-ingress
-spec:
-  rules:
-  - host: lubouski.test.com
-    http:
-      paths:
-      - path: /prometheus
-        backend:
-          serviceName: prometheus
-          servicePort: 9090
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔

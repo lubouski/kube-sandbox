@@ -1,18 +1,18 @@
-apiVersion: monitoring.coreos.com/v1
-kind: Prometheus
-metadata:
-  name: prometheus  # statefulset will be created with name prometheus-prometheus-0
-spec:
-  serviceAccountName: prometheus
-  serviceMonitorSelector:
-    matchLabels:
-      team: frontend  # defines which serviceMonitors should be included  
-  version: v2.7.1 # version of prometheus it self, which is under statefulset
-  externalUrl: http://lubouski.test.com:30000/prometheus # needed for ingress rewrite on /prometheus
-  resources:
-    requests:
-      memory: 400Mi
-  enableAdminAPI: false
-  externalLabels:  # external labes could be checked at status/configuration
-    cluster: prod-k8s-ld4
-    monitor: test-k8s-ld4-slave
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
