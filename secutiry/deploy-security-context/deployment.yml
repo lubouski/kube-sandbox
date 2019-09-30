@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alpine
+  labels:
+    app: alpine
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: alpine
+  template:
+    metadata:
+      labels:
+        app: alpine
+    spec:
+      volumes:
+        - name: log-storage
+          hostPath:
+            path: /home/integral/remote/creator/money/trader/joe/logs
+      containers:
+      - name: alpine
+        image: lubowsky/test111:v3 # fake image
+        command:
+          - /bin/sh
+          - "-c"
+          - "sleep 60m"
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - name: log-storage
+            mountPath: /integral/remote/creator/logs
+        securityContext:
+          allowPrivilegeEscalation: false
+      initContainers:
+      - name: init-myservice
+        image: busybox:1.28
+        command: ['sh', '-c', 'chown -R 991:991 /integral/remote/creator/logs']
+        volumeMounts:
+          - name: log-storage
+            mountPath: /integral/remote/creator/logs
