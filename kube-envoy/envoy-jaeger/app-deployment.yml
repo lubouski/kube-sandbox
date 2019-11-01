@@ -1,0 +1,77 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: app1
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: myapp1
+    spec:
+      containers:
+      - name: app1
+        #image: dockersamples/static-site
+        image: lubowsky/flask:sender
+        env:
+        - name: AUTHOR
+          value: app1
+        ports:
+        - containerPort: 8080
+      - name: envoy
+        image: envoyproxy/envoy-alpine
+        command: ["envoy"]
+        args: ["-c", "/etc/envoy.yaml", "--service-cluster", "$(POD_NAME)"]
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        volumeMounts:
+        - name: envoy-yaml
+          mountPath: /etc/envoy.yaml
+          subPath: envoy.yaml
+      volumes:
+      - name: envoy-yaml
+        configMap:
+          name: service1-envoy-cm
+          
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: app2
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: myapp2
+    spec:
+      containers:
+      - name: app2
+        #image: dockersamples/static-site
+        image: lubowsky/flask:receiver
+        env:
+        - name: AUTHOR
+          value: app2
+        ports:
+        - containerPort: 8090
+      - name: envoy
+        image: envoyproxy/envoy-alpine
+        command: ["envoy"]
+        args: ["-c", "/etc/envoy.yaml", "--service-cluster", "$(POD_NAME)"]
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        volumeMounts:
+        - name: envoy-yaml
+          mountPath: /etc/envoy.yaml
+          subPath: envoy.yaml
+      volumes:
+      - name: envoy-yaml
+        configMap:
+          name: service2-envoy-cm
+
