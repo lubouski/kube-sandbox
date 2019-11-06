@@ -1,15 +1,15 @@
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: example-app
-  labels:
-    team: frontend
-spec:
-#  namespaceSelector:
-#    matchNames:
-#    - default # if you got deployment in separate namespace than `ServiceMonitor`, uncomment this lines
-  selector:
-    matchLabels:
-      app: example-app
-  endpoints:
-  - port: web
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔

@@ -1,16 +1,16 @@
-kind: Pod
-apiVersion: v1
-metadata:
-  name: persistent-pod
-spec:
-  containers:
-    - name: alpine
-      image: alpine
-      command: ['sleep','36000']
-      volumeMounts:
-      - mountPath: "/home"
-        name: test-pv
-  volumes:
-    - name: test-pv
-      persistentVolumeClaim:
-        claimName: example-local-claim
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
+🐔
