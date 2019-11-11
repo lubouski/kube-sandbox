@@ -60,3 +60,8 @@ Then test that your user2 can only read any info from cluster in any namespace y
 $ KUBECONFIG=~/.kube/test-config kubectl get po -n kube-system
 ```
 
+## Since `Kubernetes 1.15` kubeconfigfile could be generated with kubeadm
+NB: advertise address could be found at `api-server` in /etc/kubernetes/manifests/kube-apiserver.yaml.
+```
+$ kubeadm alpha kubeconfig user --client-name=mynewuser --apiserver-advertise-address 192.168.100.200
+```
