@@ -35,3 +35,18 @@ lost+found      pv-rocks        sensetive.data
 ```
 
 TL;DR - And do not forget to create a block storage (disk) format and mount it to some directory. In our example it is `/loopfs` 
+```
+# dd if=/dev/zero of=loopbackfile.img bs=100M count=10
+# du -sh loopbackfile.img 
+# losetup -fP loopbackfile.img
+# losetup -a
+# mkfs.ext4 /root/loopbackfile.img 
+# mkdir /loopfs
+# df -hP /loopfs/
+# mount | grep loopfs
+
+umount /loopfs
+rmdir /loopfs
+# losetup -d /dev/loop0
+# rm /root/loopbackfile.img
+```
