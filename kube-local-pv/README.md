@@ -42,6 +42,7 @@ TL;DR - And do not forget to create a block storage (disk) format and mount it t
 # losetup -a
 # mkfs.ext4 /root/loopbackfile.img 
 # mkdir /loopfs
+# mount -o loop /dev/loop0 /loopfs
 # df -hP /loopfs/
 # mount | grep loopfs
 
