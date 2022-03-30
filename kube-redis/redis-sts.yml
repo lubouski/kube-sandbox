@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis
+  namespace: redis
+spec:
+  serviceName: "redis"
+  replicas: 1
+  selector:
+    matchLabels:
+        app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:6.2.5-alpine3.14
+        envFrom:
+          - configMapRef:
+              name: redis-config
+        args:
+          - "/usr/local/etc/redis/redis.conf"
+        ports:
+        - containerPort: 6379
+          name: redis
+        volumeMounts:
+        - name: redis
+          mountPath: /data
+        - name: rconfig
+          mountPath: /usr/local/etc/redis
+      volumes:
+       - name: redis
+         persistentVolumeClaim:
+            claimName: redis-pv-claim
+       - name: rconfig
+         secret:
+             secretName: redis-secret
+      securityContext:
+        fsGroup: 999
+        runAsGroup: 999
+        runAsUser: 999
+      imagePullSecrets:
+        - name: regcred
