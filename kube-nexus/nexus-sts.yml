@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nexus
+  namespace: nexus
+spec:
+  serviceName: "nexus"
+  replicas: 1
+  selector:
+    matchLabels:
+        app: nexus
+  template:
+    metadata:
+      labels:
+        app: nexus
+    spec:
+      containers:
+      - name: nexus
+        image: sonatype/nexus3:3.38.1
+        envFrom:
+          - configMapRef:
+              name: nexus-config
+        ports:
+        - containerPort: 8081
+          name: nexus
+        volumeMounts:
+        - name: nexus
+          mountPath: /nexus-data
+      volumes:
+       - name: nexus
+         persistentVolumeClaim:
+            claimName: nexus-pv-claim
+      securityContext:
+         fsGroup: 200
+      imagePullSecrets:
+        - name: regcred
