@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    purpose: prometheus-prometheus
+    role: alert-rules
+  name: example-rule
+  namespace: monitoring
+spec:
+  groups:
+  - name: example-rule
+    rules:
+    - alert: example-alert
+      annotations:
+        description: "Instance {{ $labels.instance }} down"
+        summary: "Service {{ $labels.target }} HTTP check failed"
+      expr: probe_success{target=~"nginx"} == 0
+      for: 1m
+      labels:
+        severity: warning
